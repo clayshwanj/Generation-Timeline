@@ -50,19 +50,33 @@ const generations = [
 ];
 
 function showGeneration() {
+  // Get the birthdate input element's value, and create a Date object from it
+  // new Date converts the string input to a date object.The Date object represents the date and time specified by the string.
+  //.value retrieves the current value of that input element, which is expected to be a date in string format ("2023-06-30").
   const birthdate = new Date(document.getElementById("birthdate").value);
+
+  // Extract the year from the birthdate
   const year = birthdate.getFullYear();
+
+  // Find the generation object that matches the birth year
   const generation = generations.find(
     (gen) => year >= gen.start && year <= gen.end
   );
 
+  // If a matching generation is found
   if (generation) {
+    // Update the text element to display the generation name
     document.getElementById(
       "generationText"
     ).innerText = `You belong to ${generation.name}`;
+
+    // Change the background image of the body to the generation's imag
     document.body.style.backgroundImage = `url('${generation.image}')`;
   } else {
+    // If no matching generation is found, display "Unknown Generation"
     document.getElementById("generationText").innerText = "Unknown Generation";
+
+    // Clear the background image of the body
     document.body.style.backgroundImage = "";
   }
 }
